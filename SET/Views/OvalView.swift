@@ -15,10 +15,43 @@ struct OvalView: View {
     var body: some View {
         HStack {
             ForEach(0..<count.rawValue) { val in
-                Capsule()
-                    .foregroundColor(self.getCorrespondingColor(self.color))
-                    .frame(width: 20, height: 80, alignment: .center)
-            
+                if shading == .solid {
+                    Capsule()
+                        .foregroundColor(self.getCorrespondingColor(self.color))
+                        .frame(width: 20, height: 80, alignment: .center)
+                } else if shading == .outlined {
+                    Capsule()
+                        .stroke(lineWidth: 2)
+                        .foregroundColor(self.getCorrespondingColor(self.color))
+                        .frame(width: 20, height: 80, alignment: .center)
+                } else {
+                    if color == .red {
+                        Capsule()
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(self.getCorrespondingColor(self.color))
+                            .background(Image("redStripe").resizable()
+                                .clipped()
+                                .frame(width: 20, height: 60, alignment: .center))
+                            .frame(width: 20, height: 80, alignment: .center)
+                    } else if color == .green {
+                        Capsule()
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(self.getCorrespondingColor(self.color))
+                            .background(Image("greenStripe").resizable()
+                                .clipped()
+                                .frame(width: 20, height: 60, alignment: .center))
+                            .frame(width: 20, height: 80, alignment: .center)
+                    } else {
+                        Capsule()
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(self.getCorrespondingColor(self.color))
+                            .background(Image("purpleStripe").resizable()
+                                .clipped()
+                                .frame(width: 20, height: 60, alignment: .center))
+                            .frame(width: 20, height: 80, alignment: .center)
+                    }
+                
+                }
             }
         }
         .padding(20)
@@ -44,8 +77,9 @@ extension View {
     }
 }
 
+
 struct OvalView_Previews: PreviewProvider {
     static var previews: some View {
-        OvalView(count: CardNumber.three, color: .green, shading: .solid)
+        OvalView(count: CardNumber.three, color: .purple, shading: .striped)
     }
 }
