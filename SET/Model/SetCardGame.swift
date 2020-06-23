@@ -63,6 +63,6 @@ struct SetCardgame<CardContent> where CardContent : Equatable {
             
         }
         cards = cards.shuffled()
-        print("Total cards: \(cards.count)")
+        print("Total cards : \(cards.count)")
     }
 }
