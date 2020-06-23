@@ -17,7 +17,7 @@ struct SetGameView: View {
                 .padding(5)
             }
         }
-        .padding()
+        .padding(4)
         .foregroundColor(.orange)
         
     }

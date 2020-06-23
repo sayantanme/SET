@@ -15,17 +15,17 @@ struct OvalView: View {
     var body: some View {
         HStack {
             ForEach(0..<count.rawValue) { val in
-                if shading == .solid {
+                if self.shading == .solid {
                     Capsule()
                         .foregroundColor(self.getCorrespondingColor(self.color))
                         .frame(width: 20, height: 80, alignment: .center)
-                } else if shading == .outlined {
+                } else if self.shading == .outlined {
                     Capsule()
                         .stroke(lineWidth: 2)
                         .foregroundColor(self.getCorrespondingColor(self.color))
                         .frame(width: 20, height: 80, alignment: .center)
                 } else {
-                    if color == .red {
+                    if self.color == .red {
                         Capsule()
                             .stroke(lineWidth: 2)
                             .foregroundColor(self.getCorrespondingColor(self.color))
@@ -33,7 +33,7 @@ struct OvalView: View {
                                 .clipped()
                                 .frame(width: 20, height: 60, alignment: .center))
                             .frame(width: 20, height: 80, alignment: .center)
-                    } else if color == .green {
+                    } else if self.color == .green {
                         Capsule()
                             .stroke(lineWidth: 2)
                             .foregroundColor(self.getCorrespondingColor(self.color))
