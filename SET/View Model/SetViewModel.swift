@@ -24,4 +24,16 @@ class SetViewModel: ObservableObject {
     func chooseThreeMoreCards() {
         model.chooseCards(count: 3)
     }
+    
+    func choose(card: SetCardgame.Card) {
+        model.choose(card: card)
+    }
+    
+    var hasMatch: Bool {
+        get {
+            model.isMatch
+        } set {
+            model.isMatch = false
+        }
+    }
 }

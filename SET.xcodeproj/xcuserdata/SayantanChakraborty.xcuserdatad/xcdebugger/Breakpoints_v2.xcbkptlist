@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F95C0636-9391-4551-B03A-625C6FFE89C1"
+            uuid = "772876D1-5CBD-4574-86EE-91C290D7F376"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SET/GridView/Grid.swift"
+            filePath = "SET/Model/SetCardGame.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "init(_:viewForItem:)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "choose(card:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

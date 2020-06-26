@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum CardShape: CaseIterable {
+enum CardShape: CaseIterable,Equatable {
     case oval
     case squiggles
     case diamond
 }
 
-enum CardColor: CaseIterable {
+enum CardColor: CaseIterable,Equatable {
     case red
     case purple
     case green
@@ -33,13 +33,14 @@ enum CardShading: CaseIterable {
 }
 
 struct SetCardgame {
-    var cards: [Card]
-    var currentlyPlayingCards = [Card]()
+    private var cards: [Card]
+    private(set) var currentlyPlayingCards = [Card]()
+    var isMatch = false
     
     struct Card: Identifiable {
         var id : Int
         var isMatched: Bool = false
-        var isFaceUp: Bool = true
+        var isSelected: Bool = false
         //var content : CardContent
         var shape: CardShape
         var color: CardColor
@@ -65,7 +66,6 @@ struct SetCardgame {
         }
         cards = cards.shuffled()
         chooseCards(count: 12)
-        print("Total cards : \(cards.count)")
     }
     
     mutating func chooseCards(count: Int) {
@@ -80,5 +80,38 @@ struct SetCardgame {
                 chosenCount = chosenCount + 1
             }
         }
+    }
+    
+    mutating func choose(card: Card) {
+        if let choosenIndex = currentlyPlayingCards.firstIndex(matching: card) {
+            currentlyPlayingCards[choosenIndex].isSelected = !card.isSelected
+            let selectedCards = currentlyPlayingCards.filter{ $0.isSelected }
+            if selectedCards.count == 3  {
+                if isSet(cards: selectedCards) {
+                    isMatch = true
+                }
+            }
+            if selectedCards.count == 4 {
+                for crd in selectedCards {
+                    if crd.id != card.id {
+                        if let idx = currentlyPlayingCards.firstIndex(matching: crd){
+                            currentlyPlayingCards[idx].isSelected = false
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func isSet(cards: [Card]) -> Bool {
+        let colors = (cards[0].color == cards[1].color && cards[1].color == cards[2].color) || (cards[0].color != cards[1].color && cards[1].color != cards[2].color && cards[0].color != cards[2].color)
+        
+        let shading = (cards[0].shading == cards[1].shading && cards[1].shading == cards[2].shading) || (cards[0].shading != cards[1].shading && cards[1].shading != cards[2].shading && cards[0].shading != cards[2].shading)
+        
+        let quantities = (cards[0].number == cards[1].number && cards[1].number == cards[2].number) || (cards[0].number != cards[1].number && cards[1].number != cards[2].number && cards[0].number != cards[2].number)
+        
+        let symbols = (cards[0].shape == cards[1].shape && cards[1].shape == cards[2].shape) || (cards[0].shape != cards[1].shape && cards[1].shape != cards[2].shape && cards[0].shape != cards[2].shape)
+        
+        return colors && shading && quantities && symbols
     }
 }

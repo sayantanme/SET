@@ -23,7 +23,6 @@ struct Grid<Item,ItemView>: View where Item: Identifiable, ItemView: View {
     }
     
     func body(for layout: GridLayout) -> some View{
-        print("bodyItem count:\(items.count)")
         return ForEach(items) { item in
             self.body(for: item, in: layout)
             
@@ -32,7 +31,6 @@ struct Grid<Item,ItemView>: View where Item: Identifiable, ItemView: View {
     
     func body(for item: Item, in layout:GridLayout) -> some View {
         let index = items.firstIndex(matching: item)!
-        print("Index:\(index)")
         return viewForItem(item)
             .frame(width: layout.itemSize.width, height: layout.itemSize.height)
             .position(layout.location(ofItemAt: index))
