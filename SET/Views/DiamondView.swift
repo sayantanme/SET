@@ -1,14 +1,14 @@
 //
-//  OvalView.swift
+//  DiamondView.swift
 //  SET
 //
-//  Created by Sayantan Chakraborty on 23/06/20.
+//  Created by Sayantan Chakraborty on 24/06/20.
 //  Copyright © 2020 Sayantan Chakraborty. All rights reserved.
 //
 
 import SwiftUI
 
-struct OvalView: View {
+struct DiamondView: View {
     let count: CardNumber
     let color: CardColor
     let shading: CardShading
@@ -16,66 +16,47 @@ struct OvalView: View {
         HStack {
             ForEach(0..<count.rawValue) { val in
                 if self.shading == .solid {
-                    Capsule()
-                        .foregroundColor(self.getCorrespondingColor(self.color))
+                    Diamond().foregroundColor(self.getCorrespondingColor(self.color))
                         .frame(width: 20, height: 60, alignment: .center)
                 } else if self.shading == .outlined {
-                    Capsule()
+                    Diamond()
                         .stroke(lineWidth: 2)
                         .foregroundColor(self.getCorrespondingColor(self.color))
                         .frame(width: 20, height: 60, alignment: .center)
                 } else {
                     if self.color == .red {
-                        Capsule()
+                        Diamond()
                             .stroke(lineWidth: 2)
                             .foregroundColor(self.getCorrespondingColor(self.color))
                             .background(Image("redStripe").resizable()
-                                .clipShape(Capsule()))
+                                            .clipShape(Diamond()))
                             .frame(width: 20, height: 60, alignment: .center)
                     } else if self.color == .green {
-                        Capsule()
+                        Diamond()
                             .stroke(lineWidth: 2)
                             .foregroundColor(self.getCorrespondingColor(self.color))
                             .background(Image("greenStripe").resizable()
-                                .clipShape(Capsule()))
+                                .clipShape(Diamond()))
+                                //.frame(width: 10, height: 40, alignment: .center))
                             .frame(width: 20, height: 60, alignment: .center)
-                    } else {
-                        Capsule()
+                    } else{
+                        Diamond()
                             .stroke(lineWidth: 2)
                             .foregroundColor(self.getCorrespondingColor(self.color))
-                            .background(Image("purpleStripe").resizable()
-                                .clipShape(Capsule()))
+                            .background(Image("purpleStripe")
+                                            .resizable()
+                                            .clipShape(Diamond()))
+                                //.frame(width: 10, height: 40, alignment: .center))
                             .frame(width: 20, height: 60, alignment: .center)
                     }
-                
                 }
             }
         }
-        
-    }
-    
-    
-}
-
-extension View {
-    func getCorrespondingColor(_ color: CardColor) -> Color {
-        switch color {
-        case .red:
-            return Color.red
-            
-        case .green:
-            return Color.green
-            
-        case .purple:
-            return Color.purple
-            
-        }
     }
 }
 
-
-struct OvalView_Previews: PreviewProvider {
+struct DiamondView_Previews: PreviewProvider {
     static var previews: some View {
-        OvalView(count: CardNumber.three, color: .red, shading: .striped)
+        DiamondView(count: CardNumber.three, color: .red, shading: .striped)
     }
 }

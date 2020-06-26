@@ -11,20 +11,25 @@ import SwiftUI
 struct SetGameView: View {
     @ObservedObject var gameLogic: SetViewModel
     var body: some View {
-        VStack {
-            Grid(gameLogic.cards) { card in
-                CardView(card: card)
-                .padding(5)
+        print("ItemCount:\(gameLogic.cards.count)")
+        return NavigationView {
+            VStack {
+                Grid(gameLogic.cards) { card in
+                    CardView(card: card)
+                    .padding(2)
+                }
             }
+            .foregroundColor(.orange)
+            .navigationBarTitle("SET")
+            .navigationBarItems(trailing: Button("Deal 3 more"){
+                self.gameLogic.chooseThreeMoreCards()
+            })
         }
-        .padding(4)
-        .foregroundColor(.orange)
-        
     }
 }
 
 struct CardView: View {
-    var card: SetCardgame<String>.Card
+    var card: SetCardgame.Card
     var body: some View {
         GeometryReader { geometry in
             self.body(for: geometry.size)
@@ -34,9 +39,13 @@ struct CardView: View {
     func body(for size: CGSize) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10).fill(Color.white)
-            RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 3)
+            RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 1)
             if card.shape == .oval {
                 OvalView(count: card.number, color: card.color, shading: card.shading)
+            } else if card.shape == .diamond {
+                DiamondView(count: card.number, color: card.color, shading: card.shading)
+            } else if card.shape == .squiggles {
+                TriangleView(count: card.number, color: card.color, shading: card.shading)
             }
         }
     }

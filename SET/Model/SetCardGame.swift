@@ -32,30 +32,31 @@ enum CardShading: CaseIterable {
     case outlined
 }
 
-struct SetCardgame<CardContent> where CardContent : Equatable {
+struct SetCardgame {
     var cards: [Card]
+    var currentlyPlayingCards = [Card]()
     
     struct Card: Identifiable {
         var id : Int
         var isMatched: Bool = false
         var isFaceUp: Bool = true
-        var content : CardContent
+        //var content : CardContent
         var shape: CardShape
         var color: CardColor
         var number: CardNumber
         var shading: CardShading
-        
+        var isAlreadyShown: Bool = false
     }
     
-    init(cardContentFactory: (Int) -> CardContent) {
+    init(cardContentFactory: (Int) -> Void) {
         cards = [Card]()
         var index = 0
         for number in CardNumber.allCases {
             for shape in CardShape.allCases {
                 for color in CardColor.allCases {
                     for shading in CardShading.allCases {
-                        let content = cardContentFactory(index)
-                        cards.append(Card(id: index, content: content, shape: shape, color: color, number: number, shading: shading))
+                        //let content = cardContentFactory(index)
+                        cards.append(Card(id: index, shape: shape, color: color, number: number, shading: shading))
                         index = index + 1
                     }
                 }
@@ -63,6 +64,21 @@ struct SetCardgame<CardContent> where CardContent : Equatable {
             
         }
         cards = cards.shuffled()
+        chooseCards(count: 12)
         print("Total cards : \(cards.count)")
+    }
+    
+    mutating func chooseCards(count: Int) {
+        var chosenCount = 0
+        for var card in cards {
+            if !card.isAlreadyShown && chosenCount < count {
+                card.isAlreadyShown = true
+                currentlyPlayingCards.append(card)
+                if let indx = cards.firstIndex(matching: card) {
+                    cards[indx].isAlreadyShown = true
+                }
+                chosenCount = chosenCount + 1
+            }
+        }
     }
 }

@@ -1,14 +1,14 @@
 //
-//  OvalView.swift
+//  TriangleShape.swift
 //  SET
 //
-//  Created by Sayantan Chakraborty on 23/06/20.
+//  Created by Sayantan Chakraborty on 25/06/20.
 //  Copyright © 2020 Sayantan Chakraborty. All rights reserved.
 //
 
 import SwiftUI
 
-struct OvalView: View {
+struct TriangleView: View {
     let count: CardNumber
     let color: CardColor
     let shading: CardShading
@@ -16,66 +16,47 @@ struct OvalView: View {
         HStack {
             ForEach(0..<count.rawValue) { val in
                 if self.shading == .solid {
-                    Capsule()
-                        .foregroundColor(self.getCorrespondingColor(self.color))
+                    Triangle().foregroundColor(self.getCorrespondingColor(self.color))
                         .frame(width: 20, height: 60, alignment: .center)
                 } else if self.shading == .outlined {
-                    Capsule()
+                    Triangle()
                         .stroke(lineWidth: 2)
                         .foregroundColor(self.getCorrespondingColor(self.color))
                         .frame(width: 20, height: 60, alignment: .center)
                 } else {
                     if self.color == .red {
-                        Capsule()
+                        Triangle()
                             .stroke(lineWidth: 2)
                             .foregroundColor(self.getCorrespondingColor(self.color))
                             .background(Image("redStripe").resizable()
-                                .clipShape(Capsule()))
+                                            .clipShape(Triangle()))
                             .frame(width: 20, height: 60, alignment: .center)
                     } else if self.color == .green {
-                        Capsule()
+                        Triangle()
                             .stroke(lineWidth: 2)
                             .foregroundColor(self.getCorrespondingColor(self.color))
                             .background(Image("greenStripe").resizable()
-                                .clipShape(Capsule()))
+                                .clipShape(Triangle()))
+                                //.frame(width: 10, height: 40, alignment: .center))
                             .frame(width: 20, height: 60, alignment: .center)
-                    } else {
-                        Capsule()
+                    } else{
+                        Triangle()
                             .stroke(lineWidth: 2)
                             .foregroundColor(self.getCorrespondingColor(self.color))
-                            .background(Image("purpleStripe").resizable()
-                                .clipShape(Capsule()))
+                            .background(Image("purpleStripe")
+                                            .resizable()
+                                            .clipShape(Triangle()))
+                                //.frame(width: 10, height: 40, alignment: .center))
                             .frame(width: 20, height: 60, alignment: .center)
                     }
-                
                 }
             }
         }
-        
-    }
-    
-    
-}
-
-extension View {
-    func getCorrespondingColor(_ color: CardColor) -> Color {
-        switch color {
-        case .red:
-            return Color.red
-            
-        case .green:
-            return Color.green
-            
-        case .purple:
-            return Color.purple
-            
-        }
     }
 }
 
-
-struct OvalView_Previews: PreviewProvider {
+struct TriangleShape_Previews: PreviewProvider {
     static var previews: some View {
-        OvalView(count: CardNumber.three, color: .red, shading: .striped)
+        TriangleView(count: CardNumber.three, color: .red, shading: .striped)
     }
 }

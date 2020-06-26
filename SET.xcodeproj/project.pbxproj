@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3962211C24A3C40D0005BDBF /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3962211B24A3C40D0005BDBF /* Triangle.swift */; };
+		3962211E24A4BC8B0005BDBF /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3962211D24A4BC8B0005BDBF /* TriangleView.swift */; };
 		39C91A17249F5EE500388576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C91A16249F5EE500388576 /* AppDelegate.swift */; };
 		39C91A19249F5EE500388576 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C91A18249F5EE500388576 /* SceneDelegate.swift */; };
 		39C91A1C249F5EE500388576 /* SET.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39C91A1A249F5EE500388576 /* SET.xcdatamodeld */; };
@@ -20,6 +22,8 @@
 		39C91A4C249F622300388576 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C91A4B249F622300388576 /* GridLayout.swift */; };
 		39C91A50249F638A00388576 /* SetCardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C91A4F249F638A00388576 /* SetCardGame.swift */; };
 		39C91A53249FA87600388576 /* SetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C91A52249FA87600388576 /* SetViewModel.swift */; };
+		39CAD53024A3A8F60060372A /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CAD52F24A3A8F60060372A /* Diamond.swift */; };
+		39CAD53224A3B93C0060372A /* DiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CAD53124A3B93C0060372A /* DiamondView.swift */; };
 		39EF89D424A21731005F18C5 /* OvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EF89D324A21731005F18C5 /* OvalView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3962211B24A3C40D0005BDBF /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		3962211D24A4BC8B0005BDBF /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		39C91A13249F5EE500388576 /* SET.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SET.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39C91A16249F5EE500388576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39C91A18249F5EE500388576 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +66,8 @@
 		39C91A4B249F622300388576 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		39C91A4F249F638A00388576 /* SetCardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardGame.swift; sourceTree = "<group>"; };
 		39C91A52249FA87600388576 /* SetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewModel.swift; sourceTree = "<group>"; };
+		39CAD52F24A3A8F60060372A /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		39CAD53124A3B93C0060372A /* DiamondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondView.swift; sourceTree = "<group>"; };
 		39EF89D324A21731005F18C5 /* OvalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +119,7 @@
 		39C91A15249F5EE500388576 /* SET */ = {
 			isa = PBXGroup;
 			children = (
+				39CAD52E24A3A8D50060372A /* Shape */,
 				39C91A54249FB84600388576 /* Views */,
 				39C91A51249FA84100388576 /* View Model */,
 				39C91A4E249F634800388576 /* Model */,
@@ -182,8 +191,19 @@
 			children = (
 				39C91A1D249F5EE600388576 /* SetGameView.swift */,
 				39EF89D324A21731005F18C5 /* OvalView.swift */,
+				39CAD53124A3B93C0060372A /* DiamondView.swift */,
+				3962211D24A4BC8B0005BDBF /* TriangleView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		39CAD52E24A3A8D50060372A /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				39CAD52F24A3A8F60060372A /* Diamond.swift */,
+				3962211B24A3C40D0005BDBF /* Triangle.swift */,
+			);
+			path = Shape;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,12 +339,16 @@
 			files = (
 				39C91A1C249F5EE500388576 /* SET.xcdatamodeld in Sources */,
 				39C91A17249F5EE500388576 /* AppDelegate.swift in Sources */,
+				3962211C24A3C40D0005BDBF /* Triangle.swift in Sources */,
+				39CAD53224A3B93C0060372A /* DiamondView.swift in Sources */,
 				39EF89D424A21731005F18C5 /* OvalView.swift in Sources */,
 				39C91A1E249F5EE600388576 /* SetGameView.swift in Sources */,
 				39C91A4C249F622300388576 /* GridLayout.swift in Sources */,
 				39C91A50249F638A00388576 /* SetCardGame.swift in Sources */,
 				39C91A53249FA87600388576 /* SetViewModel.swift in Sources */,
 				39C91A4A249F621200388576 /* Grid.swift in Sources */,
+				3962211E24A4BC8B0005BDBF /* TriangleView.swift in Sources */,
+				39CAD53024A3A8F60060372A /* Diamond.swift in Sources */,
 				39C91A19249F5EE500388576 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,7 +446,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -476,7 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

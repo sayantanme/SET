@@ -10,13 +10,18 @@ import Foundation
 class SetViewModel: ObservableObject {
     @Published private var model = createSetGame()
     
-    static func createSetGame() -> SetCardgame<String> {
-        return SetCardgame<String>() { (index) -> String in
-            return "😀"
+    static func createSetGame() -> SetCardgame {
+        return SetCardgame() { _ in
+            
         }
     }
     
-    var cards: [SetCardgame<String>.Card] {
-        return Array(model.cards.prefix(12))
+    var cards: [SetCardgame.Card] {
+        return model.currentlyPlayingCards
+    }
+
+    // MARK: Intent
+    func chooseThreeMoreCards() {
+        model.chooseCards(count: 3)
     }
 }
