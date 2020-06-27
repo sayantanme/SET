@@ -36,6 +36,11 @@ struct SetCardgame {
     private var cards: [Card]
     private(set) var currentlyPlayingCards = [Card]()
     var isMatch = false
+    var currentMatchedCards: [Card] {
+        get {
+            currentlyPlayingCards.filter { $0.isMatched }
+        } set {}
+    }
     
     struct Card: Identifiable {
         var id : Int
@@ -49,7 +54,7 @@ struct SetCardgame {
         var isAlreadyShown: Bool = false
     }
     
-    init(cardContentFactory: (Int) -> Void) {
+    init() {
         cards = [Card]()
         var index = 0
         for number in CardNumber.allCases {
@@ -73,7 +78,14 @@ struct SetCardgame {
         for var card in cards {
             if !card.isAlreadyShown && chosenCount < count {
                 card.isAlreadyShown = true
-                currentlyPlayingCards.append(card)
+                if currentMatchedCards.count > 0 {
+                    if let indx = currentlyPlayingCards.firstIndex(matching: currentMatchedCards.first!) {
+                        currentlyPlayingCards[indx] = card
+                        currentMatchedCards = Array(currentMatchedCards.dropFirst())
+                    }
+                } else {
+                    currentlyPlayingCards.append(card)
+                }
                 if let indx = cards.firstIndex(matching: card) {
                     cards[indx].isAlreadyShown = true
                 }
@@ -89,10 +101,15 @@ struct SetCardgame {
             if selectedCards.count == 3  {
                 if isSet(cards: selectedCards) {
                     isMatch = true
+                    for card in selectedCards {
+                        if let idx = currentlyPlayingCards.firstIndex(matching: card){
+                            currentlyPlayingCards[idx].isMatched = true
+                        }
+                    }
                 }
             }
             if selectedCards.count == 4 {
-                for crd in selectedCards {
+                    for crd in selectedCards {
                     if crd.id != card.id {
                         if let idx = currentlyPlayingCards.firstIndex(matching: crd){
                             currentlyPlayingCards[idx].isSelected = false

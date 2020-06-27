@@ -8,12 +8,11 @@
 
 import Foundation
 class SetViewModel: ObservableObject {
-    @Published private var model = createSetGame()
+    @Published private var model: SetCardgame
     
-    static func createSetGame() -> SetCardgame {
-        return SetCardgame() { _ in
-            
-        }
+    
+    init() {
+        model = SetCardgame()
     }
     
     var cards: [SetCardgame.Card] {
@@ -35,5 +34,9 @@ class SetViewModel: ObservableObject {
         } set {
             model.isMatch = false
         }
+    }
+    
+    func restartGame() {
+        model = SetCardgame()
     }
 }

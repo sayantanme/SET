@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SetGameView: View {
     @ObservedObject var gameLogic: SetViewModel
+    @State var matchCount = 0
     var body: some View {
         return NavigationView {
             VStack {
@@ -21,12 +22,18 @@ struct SetGameView: View {
                 }
             }
             .alert(isPresented: $gameLogic.hasMatch) {
-                Alert(title: Text("Match"), message: Text("Got a match"), dismissButton: .default(Text("Ok")))
+                Alert(title: Text("Match"), message: Text("Got a match"), dismissButton: .default(Text("Ok"), action: {
+                    self.matchCount = self.matchCount + 1
+                    self.gameLogic.chooseThreeMoreCards()
+                }))
             }
             .foregroundColor(.orange)
-            .navigationBarTitle("SET")
-            .navigationBarItems(trailing: Button("Deal 3 more"){
-                self.gameLogic.chooseThreeMoreCards()
+            .navigationBarTitle(matchCount == 0 ? "SET" : "SET, Matches:\(matchCount)")
+            .navigationBarItems(leading: Button("New Game"){
+                    self.gameLogic.restartGame()
+                    self.matchCount = 0
+                }, trailing: Button("Deal 3 more"){
+                    self.gameLogic.chooseThreeMoreCards()
             })
         }
     }
